@@ -1,0 +1,3 @@
+interface ISIdeWidth {
+    sub: number;
+}

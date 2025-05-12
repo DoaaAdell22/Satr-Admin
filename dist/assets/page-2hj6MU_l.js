@@ -1,0 +1,1 @@
+import{j as t}from"./index-CbNkVbyA.js";import{E as s}from"./index-CbNQXSC4.js";function a(){return t.jsx("div",{className:"flex flex-col gap-2   rounded-lg  mx-auto pt-16",children:t.jsx(s,{})})}export{a as default};
