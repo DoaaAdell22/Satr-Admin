@@ -416,5 +416,16 @@
   "pages": "Pages",
   "short_des": "Short des",
   "Socials": "Socials",
-  "Contact-us": "Contact Us"
+  "Contact-us": "Contact Us",
+  "image_url": "Image",
+  "Services-List": "Services List",
+  "service": "Service",
+  "Long Description": "Long Description",
+  "short-des": "Short des",
+  "media": "Media",
+  "Original Image": "Original Image",
+  "No media": "no media",
+  "No-media": "no media",
+  "Message": "Message",
+  "link": "Link"
 }

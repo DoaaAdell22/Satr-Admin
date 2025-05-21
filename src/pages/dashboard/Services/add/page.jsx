@@ -14,7 +14,6 @@ const page = () => {
     const language = useSelector(state => state.LanguageSwitcher.language);
     const navigate = useNavigate()
     const params = useParams();
-      const [fileList, setFileList] = useState([])
 
 const [form] = Form.useForm();
 
@@ -30,21 +29,12 @@ const [form] = Form.useForm();
   
   const request = (values) => {
   
- console.log(values); 
-                const formData = new FormData();
-  formData.append('name', values.name);
-  formData.append('created_at', values.created_at);
-  formData.append('updated_at', values.updated_at);
-
-  if (values.image_url && values.image_url.length > 0) {
-    formData.append('image', values.image_url[0].originFileObj);
-  }        
+       
   
                 setLoading(true)
-                axios.post("http://back.satr.net.sa/api/admin/partners" , formData ,
+                axios.post("http://back.satr.net.sa/api/admin/services" , values ,
                     {  headers: {
                     Authorization: `Bearer ${idToken}`,
-                        'Content-Type': 'multipart/form-data',
                         }, }
                     
                 ).then((res)=>{
@@ -62,15 +52,6 @@ const [form] = Form.useForm();
 
             }
                 
-           
-  const handleChange = ({ fileList }) => {
-  if (fileList.length <= 1) {
-    setFileList(fileList);
-    form.setFieldsValue({ image: fileList });
-  } else {
-    message.error('You can only upload a maximum of 1 image');
-  }
-};
 
 
             
@@ -90,30 +71,6 @@ const [form] = Form.useForm();
             
             </Form.Item>
     
-             <Form.Item
-  label={<FormattedMessage id='image' />}
-  name="image"
-  valuePropName="fileList"
-  getValueFromEvent={(e) => e?.fileList}
-  rules={[{ required: true, message: 'Please upload an image' }]}
->
-  <Upload
-    listType="picture-card"
-    beforeUpload={() => false}
-    onChange={handleChange}
-    fileList={fileList}
-    maxCount={1}
-  >
-    {fileList.length >= 1 ? null : (
-      <div>
-        <PlusOutlined />
-        <div style={{ marginTop: 8 }}>
-          <FormattedMessage id='upload' />
-        </div>
-      </div>
-    )}
-                </Upload>
-              </Form.Item>
             <Form.Item className='text-center' >
             <Button loading={loading}
             className="custom-table px-5"   htmlType='submit' type='primary'><FormattedMessage id='add' /></Button>

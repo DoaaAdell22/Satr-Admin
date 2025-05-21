@@ -417,5 +417,18 @@
   "integrations": "التكامل",
   "pages": "الصفحات",
   "Socials": "الاجتماعية",
-  "Contact-us": "اتصل بنا"
+  "Contact-us": "اتصل بنا",
+  "image_url": "صورة",
+  "Services-List": "قائمة الخدمات",
+  "service": "خدمة",
+  "long_des": "وصف طويل",
+  "Long Description": "وصف طويل",
+  "short-des": "وصف قصير",
+  "media": "وسائط",
+  "short_des": "وصف قصير",
+  "Original Image": "الصورة الأصلية",
+  "No media": "لا وسائل الإعلام",
+  "No-media": "لا يوجد وسائط",
+  "Message": "رسالة",
+  "link": "الرابط"
 }

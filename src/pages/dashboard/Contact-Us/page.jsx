@@ -37,32 +37,32 @@ const page = () => {
  
       const columns = [
         {
-          title: 'Name',
+          title : <FormattedMessage id='name' />,
           dataIndex: 'name',
           key: 'name',
         },
         {
-          title: 'Phone',
+          title : <FormattedMessage id='phone' />,
           dataIndex: 'phone',
           key: 'phone',
         },
         {
-          title: 'Email',
+          title : <FormattedMessage id='email' />,
           dataIndex: 'email',
           key: 'email',
         },
         {
-          title: 'Message',
+          title : <FormattedMessage id='Message' />,
           dataIndex: 'message',
           key: 'message',
         },
         {
-          title: 'Created at',
+          title : <FormattedMessage id='created_at' />,
           dataIndex: 'created_at',
           key: 'created_at',
         },
         {
-          title: 'Updated at',
+          title : <FormattedMessage id='updated_at' />,
           dataIndex: 'updated_at',
           key: 'updated_at',
         },

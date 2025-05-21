@@ -37,14 +37,14 @@ const Page = () => {
         axios.put(`http://back.satr.net.sa/api/admin/contents/${params.id}`, values,
             { headers: { Authorization: `Bearer ${idToken}` } }
         ).then((res) => {
-            message.success(res.data.message)
+            message.success('Data updated successfully')
             setLoading(false);
             setTimeout(() => {
                 backHandler();
             }, 2000);
         }).catch((err) => {
             setLoading(false);
-            message.err('failed updated')
+            message.error('Failed to update')
         });
     }
 
@@ -63,18 +63,14 @@ const Page = () => {
                     rules={[{ required: true, message: 'please Enter des' }]}>
                     <Input size='large' placeholder='please Enter des' />
                 </Form.Item>
-                <Form.Item
-                    label={<FormattedMessage id='created_at' />} name={"created_at"}
-                    rules={[{ required: true, message: 'please Enter created_at' }]}>
-                    <Input size='large' placeholder='please Enter created_at' />
-                </Form.Item>
-                <Form.Item
-                    label={<FormattedMessage id='updated_at' />} name={"updated_at"}
-                    rules={[{ required: true, message: 'please Enter updated_at' }]}>
-                    <Input size='large' placeholder='please Enter updated_at' />
-                </Form.Item>
+                <Form.Item label={<FormattedMessage id='created_at' />} name="created_at">
+                        <Input disabled />
+                    </Form.Item>         
+                    <Form.Item label={<FormattedMessage id='updated_at' />} name="updated_at">
+                        <Input disabled />
+                    </Form.Item>
                 <Form.Item className='text-center' >
-                <Button className='px-8' type="primary" size='large' htmlType="submit">
+                <Button className='px-8' type="primary" size='large' htmlType="submit" loading={loading}>
                   <FormattedMessage id='edit' />
                 </Button>
               </Form.Item>   

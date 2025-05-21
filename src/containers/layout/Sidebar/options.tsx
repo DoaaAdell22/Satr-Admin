@@ -24,6 +24,9 @@ import { RiPagesLine } from "react-icons/ri";
 import { MdOutlineFeaturedPlayList } from "react-icons/md";
 
 import { MdIntegrationInstructions } from "react-icons/md";
+import {FaHandshake} from "react-icons/fa"
+import { FaInbox } from 'react-icons/fa';
+import { FaServicestack } from "react-icons/fa";
 
 // Registrations
 
@@ -74,14 +77,28 @@ const getMenuItems: (profile) => MenuItem[] = (profile) =>{
     key: "partners",
     to: "partners",
     label: <FormattedMessage id="partners" />,
-    icon: <MdIntegrationInstructions className="!text-xl" />,
+    icon: <FaHandshake  className="!text-xl" />,
+    disabled: false,
+  },
+  {
+    key: "Services",
+    to: "Services",
+    label: <FormattedMessage id="services" />,
+    icon: <FaServicestack className="!text-xl" />,
+    disabled: false,
+  },
+  {
+    key: "Services-List",
+    to: "Services-List",
+    label: <FormattedMessage id="Services-List" />,
+    icon: <FaListUl className="!text-xl" />,
     disabled: false,
   },
   {
     key: "Socials",
     to: "Socials",
     label: <FormattedMessage id="Socials" />,
-    icon: <MdIntegrationInstructions className="!text-xl" />,
+    icon: <FaInbox className="!text-xl" />,
     disabled: false,
   },
   

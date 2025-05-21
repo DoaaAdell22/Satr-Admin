@@ -20,7 +20,7 @@ const page = () => {
    
 
   const request = () =>{
- axios.get("http://back.satr.net.sa/api/admin/partners" , 
+ axios.get("http://back.satr.net.sa/api/admin/services" , 
             { headers : {
             Authorization:`Bearer ${idToken}`
             }}
@@ -64,19 +64,14 @@ const page = () => {
           dataIndex: 'updated_at',
           key: 'updated_at',
         },
-        {
-          title : <FormattedMessage id='image' />,
-          dataIndex: 'image_url',
-          key: 'image_url',
-          render : (text) => <Image src={text}  width={100} />
-        },
+
         {
           title : <FormattedMessage id='actions' />,
           render : (text , record) => 
           (
             <div className='flex gap-3'>
             <Button 
-            onClick={() => navigate(`/dashboard/Partners/edit/${record.id}`, { })}><FormattedMessage id='edit' /></Button>
+            onClick={() => navigate(`/dashboard/Services/edit/${record.id}`, { })}><FormattedMessage id='edit' /></Button>
             <Button loading={click === record.id} danger  onClick={()=>{deleteHandler(record.id)}} ><FormattedMessage id='delete' /></Button>
             </div>
           )
@@ -100,8 +95,8 @@ const deleteHandler = (id) => {
 
   return (
     <div>
-        <h1 className='text-3xl font-bold '><FormattedMessage id='partners' /></h1>
-              <Button type='primary'  onClick={()=>{navigate('/dashboard/Partners/add')}}>+<FormattedMessage id='add' / > </Button>
+        <h1 className='text-3xl font-bold '><FormattedMessage id='services' /></h1>
+              <Button type='primary'  onClick={()=>{navigate('/dashboard/Services/add')}}>+<FormattedMessage id='add' / > </Button>
             <Table dataSource={data} columns={columns}       loading={loading} />
     </div>
   )

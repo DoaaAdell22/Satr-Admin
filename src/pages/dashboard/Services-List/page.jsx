@@ -20,7 +20,7 @@ const page = () => {
    
 
   const request = () =>{
- axios.get("http://back.satr.net.sa/api/admin/partners" , 
+ axios.get("http://back.satr.net.sa/api/admin/service-lists" , 
             { headers : {
             Authorization:`Bearer ${idToken}`
             }}
@@ -49,9 +49,14 @@ const page = () => {
  
       const columns = [
         {
-          title : <FormattedMessage id='name' />,
-          dataIndex: 'name',
-          key: 'name',
+          title : <FormattedMessage id='title' />,
+          dataIndex: 'title',
+          key: 'title',
+        },
+        {
+          title : <FormattedMessage id='des' />,
+          dataIndex: 'des',
+          key: 'des',
         },
         
         {
@@ -65,18 +70,20 @@ const page = () => {
           key: 'updated_at',
         },
         {
-          title : <FormattedMessage id='image' />,
-          dataIndex: 'image_url',
-          key: 'image_url',
-          render : (text) => <Image src={text}  width={100} />
+          title : <FormattedMessage id='service' />,
+          dataIndex: 'service',
+          key: 'service',
+          render : (text , record) => ( <span>Name : {record.service.name}</span>)
         },
+        
+      
         {
           title : <FormattedMessage id='actions' />,
           render : (text , record) => 
           (
             <div className='flex gap-3'>
             <Button 
-            onClick={() => navigate(`/dashboard/Partners/edit/${record.id}`, { })}><FormattedMessage id='edit' /></Button>
+            onClick={() => navigate(`/dashboard/Services-List/edit/${record.id}`, { })}><FormattedMessage id='edit' /></Button>
             <Button loading={click === record.id} danger  onClick={()=>{deleteHandler(record.id)}} ><FormattedMessage id='delete' /></Button>
             </div>
           )
@@ -86,7 +93,7 @@ const page = () => {
       
 const deleteHandler = (id) => {
     setClick(id)
-    axios.delete(`http://back.satr.net.sa/api/admin/partners/${id}` ,
+    axios.delete(`http://back.satr.net.sa/api/admin/service-lists/${id}` ,
       {
       headers: { Authorization: `Bearer ${idToken}` }
     })
@@ -100,8 +107,8 @@ const deleteHandler = (id) => {
 
   return (
     <div>
-        <h1 className='text-3xl font-bold '><FormattedMessage id='partners' /></h1>
-              <Button type='primary'  onClick={()=>{navigate('/dashboard/Partners/add')}}>+<FormattedMessage id='add' / > </Button>
+        <h1 className='text-3xl font-bold '><FormattedMessage id="Services-List" /></h1>
+              <Button type='primary'  onClick={()=>{navigate('/dashboard/Services-List/add')}}>+<FormattedMessage id='add' / > </Button>
             <Table dataSource={data} columns={columns}       loading={loading} />
     </div>
   )

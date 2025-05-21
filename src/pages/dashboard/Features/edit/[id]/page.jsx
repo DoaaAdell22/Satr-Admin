@@ -37,7 +37,7 @@ const Page = () => {
         axios.put(`http://back.satr.net.sa/api/admin/pages/${params.id}`, values,
             { headers: { Authorization: `Bearer ${idToken}` } }
         ).then((res) => {
-            message.success(res.data.message)
+            message.success('Data updated successfully')
             setLoading(false);
             setTimeout(() => {
                 backHandler();
@@ -59,22 +59,24 @@ const Page = () => {
                     <Input size='large' placeholder='please Enter name' />
                 </Form.Item>
                 <Form.Item
-                    label={<FormattedMessage id='long_des' />} name={"long_des"}
-                    rules={[{ required: true, message: 'please Enter Long des' }]}>
-                    <Input size='large' placeholder='please Enter Long des' />
+                    label={<FormattedMessage id='short_des' />} name={"short_des"}
+                    rules={[{ required: true, message: 'please Enter short des' }]}>
+                    <Input size='large' placeholder='please Enter short des' />
                 </Form.Item>
                 <Form.Item
-                    label={<FormattedMessage id='created_at' />} name={"created_at"}
-                    rules={[{ required: true, message: 'please Enter Created at' }]}>
-                    <Input size='large' placeholder='please Enter Created at' />
+                    label={<FormattedMessage id='des' />} name={"des"}
+                    rules={[{ required: true, message: 'please Enter  des' }]}>
+                    <Input size='large' placeholder='please Enter  des' />
                 </Form.Item>
-                <Form.Item
-                    label={<FormattedMessage id='updated_at' />} name={"updated_at"}
-                    rules={[{ required: true, message: 'please Enter Updated at' }]}>
-                    <Input size='large' placeholder='please Enter Updated at' />
+                <Form.Item label={<FormattedMessage id='created_at' />} name="created_at">
+                  <Input disabled />
+                </Form.Item>
+                
+                <Form.Item label={<FormattedMessage id='updated_at' />} name="updated_at">
+                  <Input disabled />
                 </Form.Item>
                 <Form.Item className='text-center' >
-                <Button className='px-8' type="primary" size='large' htmlType="submit">
+                <Button className='px-8' type="primary" size='large' htmlType="submit" loading={loading}>
                   <FormattedMessage id='edit' />
                 </Button>
               </Form.Item>   

@@ -63,19 +63,17 @@ function Topbar({
         {/* <Breadcrumb className="text-sm" items={breadcrumbItems} /> */}
       </div>
       <ul className="flex gap-1 items-center">
-        <li className="isoUser">
-          {" "}
-          {/* <ThemesSwitcher />{" "} */}
-        </li>
-        <li className="isoUser">
-          {" "}
-          {/* <LangSwitcher />{" "} */}
-        </li>
-        <li className="isoUser">
-          {" "}
-          <TopbarUser />{" "}
-        </li>
-      </ul>
+  <li className="isoUser">
+    <ThemesSwitcher />
+  </li>
+  <li className="isoUser">
+    <LangSwitcher />
+  </li>
+  <li className="isoUser">
+    <TopbarUser />
+  </li>
+</ul>
+
     </Header>
   );
 }

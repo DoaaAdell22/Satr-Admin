@@ -6,10 +6,8 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useForm } from 'antd/es/form/Form';
 import { FormattedMessage } from 'react-intl';
-import { PlusOutlined } from '@ant-design/icons';
 
 const Page = () => {
-      const [fileList, setFileList] = useState([])
 
     const [form] = useForm();
     const [loading, setLoading] = useState(false);
@@ -23,11 +21,19 @@ const Page = () => {
     }
 
     useEffect(() => {
-        axios.get(`http://back.satr.net.sa/api/admin/partners/${params.id}`,
+        axios.get(`http://back.satr.net.sa/api/admin/service-lists/${params.id}`,
             { headers: { Authorization: `Bearer ${idToken}` } }
+
+
         ).then((res) => {
+
+          const data = res.data
             form.setFieldsValue ({
-                ...res.data
+                title : data.title ,
+                des : data.des,
+                created_at : data.created_at,
+                updated_at : data.updated_at,
+                name : data?.service?.name,
             })
             
         }).catch((err) => {
@@ -38,20 +44,10 @@ const Page = () => {
    const request = (values) => {
   setLoading(true);
 
-  const formData = new FormData();
-  formData.append('_method', 'PUT');
-  formData.append('name', values.name);
-  formData.append('created_at', values.created_at);
-  formData.append('updated_at', values.updated_at);
-
-  if (values.image && values.image.length > 0) {
-    formData.append('image', values.image[0].originFileObj);
-  }
-
-  axios.post(`http://back.satr.net.sa/api/admin/partners/${params.id}`, formData, {
+ 
+  axios.put(`http://back.satr.net.sa/api/admin/service-lists/${params.id}`, values, {
     headers: {
       Authorization: `Bearer ${idToken}`,
-      'Content-Type': 'multipart/form-data',
     },
   }).then((res) => {
     message.success(res.data.message);
@@ -66,57 +62,40 @@ const Page = () => {
 };
 
 
-  const handleChange = ({ fileList }) => {
-  if (fileList.length <= 1) {
-    setFileList(fileList);
-    form.setFieldsValue({ image: fileList });
-  } else {
-    message.error('You can only upload a maximum of 1 image');
-  }
-};
-
 
     return (
         <div>
             <Form onFinish={request} layout='vertical' form={form}>
                 <Form.Item
+                    label={<FormattedMessage id='title' />} name={"title"}
+                    rules={[{ required: true, message: 'please Enter title' }]}>
+                    <Input size='large' placeholder='please Enter title' />
+                </Form.Item>
+                <Form.Item
+                    label={<FormattedMessage id='des' />} name={"des"}
+                    rules={[{ required: true, message: 'please Enter des' }]}>
+                    <Input size='large' placeholder='please Enter des' />
+                </Form.Item>
+                <Form.Item
+                    label={<FormattedMessage id='created_at' />} name={"created_at"}
+                    rules={[{ required: true, message: 'please Enter Created at' }]}>
+                    <Input size='large' disabled />
+                </Form.Item>
+                <Form.Item
+                    label={<FormattedMessage id='updated_at' />} name={"updated_at"}
+                    rules={[{ required: true, message: 'please Enter Updated at' }]}>
+                  <Input size='large' disabled />
+                </Form.Item>
+                <Form.Item
+                style={{ marginBottom: -20 }}
+                    label={<FormattedMessage id='service' />} name={"service"}
+                    rules={[{ required: true, message: 'please Enter service' }]}>
+                </Form.Item>
+              <Form.Item
                     label={<FormattedMessage id='name' />} name={"name"}
                     rules={[{ required: true, message: 'please Enter name' }]}>
                     <Input size='large' placeholder='please Enter name' />
                 </Form.Item>
-                <Form.Item label={<FormattedMessage id='created_at' />} name="created_at">
-  <Input disabled />
-</Form.Item>
-
-<Form.Item label={<FormattedMessage id='updated_at' />} name="updated_at">
-  <Input disabled />
-</Form.Item>
-
-               <Form.Item
-  label={<FormattedMessage id='image' />}
-  name="image"
-  valuePropName="fileList"
-  getValueFromEvent={(e) => e?.fileList}
-  rules={[{ required: true, message: 'Please upload an image' }]}
->
-  <Upload
-    listType="picture-card"
-    beforeUpload={() => false}
-    onChange={handleChange}
-    fileList={fileList}
-    maxCount={1}
-  >
-    {fileList.length >= 1 ? null : (
-      <div>
-        <PlusOutlined />
-        <div style={{ marginTop: 8 }}>
-          <FormattedMessage id='upload' />
-        </div>
-      </div>
-    )}
-  </Upload>
-</Form.Item>
-
                 <Form.Item className='text-center' >
                 <Button className='px-8' type="primary" size='large' htmlType="submit">
                   <FormattedMessage id='edit' />

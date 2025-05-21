@@ -67,9 +67,9 @@ function Sidebar({
             <img
             className="w-10 h-auto"
             src="/Logo-Satr.png"
-            width={48}
+            width={100}
             height={73}
-            alt="masrad-admin"
+            alt=""
           />
           )}
         </Link>
