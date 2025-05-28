@@ -1,5 +1,5 @@
 {
-  "name": "masrad-dashboard",
+  "name": "satr-admin",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -15,8 +15,9 @@
     "@tanstack/react-query-devtools": "^5.29.2",
     "@vitejs/plugin-react": "^4.2.1",
     "antd": "^5.16.2",
-    "axioos": "^0.1.0",
+    "axios": "^0.1.0",
     "bizcharts": "^4.1.23",
+    "caniuse-lite": "^1.0.30001718",
     "framer-motion": "^11.1.1",
     "google-libphonenumber": "^3.2.34",
     "jwt-decode": "^4.0.0",
